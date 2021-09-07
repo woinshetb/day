@@ -1,0 +1,122 @@
+#%RAML 1.0
+title: craft-online-shoping-API
+uses:
+  lib: library.raml
+version: 1.0.0
+/products:
+  description: get all list of the product info,
+  get:
+    queryParameters:
+      name:
+        type: string
+        description: the name of the product
+        maxLength: 10
+        required: false
+        example: dell
+      productid:
+        type: integer
+        description: the id of the product
+        required: false
+        example: 7
+    headers:
+      session:
+        description: connction sesstion is stord
+        type: string
+        required: false
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib.product[]
+            example: !include Example/Products.raml
+  is:
+    - lib.responses:
+
+  /{productid}:
+    get:
+      responses:
+         200:
+           body:
+             application/json:
+               type: lib.product
+               example: !include Example/Product.raml
+/orders:
+  get:
+    queryParameters:
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib.order[]
+            example: !include Example/Orders.raml
+  
+  post:
+    description: placing order
+    body:
+        application/json:
+            examples: !include Example/order.raml
+  
+  type:
+    lib.postresource:
+      exampleRefrence:
+  
+  is:
+    - lib.responses    
+      
+  /{orderid}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: lib.order
+              example: !include Example/Orderid.raml
+            
+/categories:
+   get:
+    responses:
+      200:
+        body:
+          application/json:
+            type: lib.category[]
+            example: !include Example/Categories.raml
+    is:
+      - lib.responses:
+
+/{categoryid}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              type: object
+              example: !include Example/categoryid.raml   
+
+/users:
+  post:
+    body:
+        application/json:
+          type: lib.user[] 
+          examples: !include Example/users.raml
+  type:
+    lib.postresource:
+      exampleRefrence:
+        {
+          "userid":1234
+        }
+                      
+  /{userid}:
+    get:
+      responses:
+       200:
+        body:
+          application/json:
+            type: lib.user
+            example: !include Example/Userid.raml
+  is:
+    - lib.responses:
+     
+          
+
+
+        

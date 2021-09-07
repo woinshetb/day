@@ -1,0 +1,175 @@
+#%RAML 1.0 Overlay
+extends:  craft2.raml
+documentation:
+  - title: Api documents 
+    content: this document is all about Spanish languge
+/products:
+  description: todos los productos
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              {
+               "número de identificación": 12,
+               "precio": 4500,
+               "tipo de producto": "dell",
+               "sitio web": "ww.del.com"
+                
+              }
+
+  /{productid}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                {
+                "número de identificación": 12,
+               "precio": 4500,
+               "tipo de producto": "dell",
+               "sitio web": "www.del.com"
+                }
+                
+                    
+/orders:
+  description: total de productos pedidos
+  get:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              [
+                {
+                   
+               "ID de pedido": 1234,
+                "categoría": 5,
+                "nombre de usuario": abdu,
+                "fecha de pedido": 25/08/2021,
+                "estado" : pendiente                  
+                },
+                {
+                  "ID de pedido": 1235,
+                "categoría": 6,
+                "nombre de usuario": jemal,
+                "fecha de pedido": 24/08/2021,
+                "estado" : pendiente 
+                }
+              ]
+  /{orderid}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example:
+                {
+                "ID de pedido": 1234,
+                "categoría": 5,
+                "nombre de usuario": abdu,
+                "fecha de pedido": 25/08/2021,
+                "estado" : pendiente
+                }  
+            
+/categories:
+   get:
+    responses:
+      200:
+        body:
+          application/json:
+            example:
+              [
+                {
+                
+                "categoría": 5,
+                "nombre de usuario": abdu,
+                "fecha de pedido": 25/08/2021,
+                "estado" : pendiente
+                },
+                
+                  {
+                
+                "categoría": 7,
+                "nombre de usuario": selam,
+                "fecha de pedido": 15/08/2021,
+                "estado" : pendiente
+                } 
+              ] 
+    is:
+      - lib.responses:
+
+/{categoryid}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              example: 
+              
+                  {
+                "ID de pedido": 1234,
+                "categoría": 5,
+                "nombre de usuario": abdu,
+                "fecha de pedido": 25/08/2021,
+                "estado" : pendiente
+                }
+/users:
+  post:
+    body:
+      application/json:
+        example:
+          [
+            {
+              "ID de usuario": "1",
+                "number de usuario": "Abril",
+                "description": se crea una cuenta de usuario",
+                "vedio_url": "www.toshiba.com",
+                "dirección": "55 high lee way"
+            },
+            {
+              "ID de usuario": "3",
+                "number de usuario": "Ali",
+                "description": se crea una cuenta de usuario",
+                "vedio_url": "www.toshiba.com",
+                "dirección": "55 high lee way"
+            }
+          ]
+    
+    responses:
+          201:
+            body:
+              application/json:
+                example:
+                  {
+                   mensaje: "ID de usuario 1"
+                  }
+
+  /{userid}:
+    get:
+      responses:
+       200:
+        body:
+          application/json:
+           example: 
+            
+                {
+                "ID de usuario": "1",
+                "number de usuario": "Abril",
+                "description": se crea una cuenta de usuario",
+                "vedio_url": "www.toshiba.com",
+                "dirección": "55 high lee way"
+
+             }
+  is:
+    - lib.responses:
+                   
+
+
+          
+        
+  
+
+
